@@ -1,24 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using LiteDb.Common.Entities;
-using LiteDb.Common.Models;
 using NUnit.Framework;
+using SqLitePcl.Common.Models;
 
 namespace LiteDb.Common.Test.Models
 {
     [TestFixture]
-    public class CarDataStoreTest
+    public class CarSqLiteDataStoreTest
     {
-        private CarDataStore db;
-        private const string dbPath = "dbLiteDbTest";
+        private CarSqLiteDataStore db;
+        private const string dbPath = "dbSqLiteTest";
 
         [SetUp]
         public void BeforeEachTest()
         {
-            db = new CarDataStore(dbPath);
+            db = new CarSqLiteDataStore(dbPath + ".db3");
         }
 
         [TearDown]
@@ -42,14 +41,12 @@ namespace LiteDb.Common.Test.Models
         [Test]
         public void UpdateElement_Succes()
         {
-            // Arrange
             var item = new Car() { Id = 1, Model = "modelTest", Productor = "ProductorTest", Year = 1970 };
             Task.FromResult(db.AddItem(item));
 
-
             // reload element to get item with given Id
             item = db.GetItemsAsync().Result.FirstOrDefault();
-            item.Model = "modelTest2";
+            item.Model = "modelTest1";
             Task.FromResult(db.UpdateItemAsync(item));
 
             Assert.True(item.Equals(db.GetItemsAsync().Result.FirstOrDefault()));
@@ -81,7 +78,6 @@ namespace LiteDb.Common.Test.Models
 
             items.ForEach(x => Task.FromResult(db.AddItem(x)));
             Assert.AreEqual(items.Count, db.GetItemsAsync().Result.Count);
-
 
             // Act
             Task.FromResult(db.DeleteAllAsync());

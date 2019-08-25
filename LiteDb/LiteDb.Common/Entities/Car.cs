@@ -1,9 +1,11 @@
 ﻿using System;
+using SQLite;
 
 namespace LiteDb.Common.Entities
 {
     public class Car
     {
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
         public string Model { get; set; }
