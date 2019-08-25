@@ -6,11 +6,11 @@ namespace Common.Models
 {
     public interface IDataStore<T> : IDisposable
     {
-        Task<bool> AddItemAsync(T item);
-        Task<bool> UpdateItemAsync(T item);
-        Task<bool> DeleteItemAsync(T item);
-        Task<T> GetItemAsync(long item);
+        Task AddItem(T item);
+        Task UpdateItemAsync(T item);
+        Task DeleteItemAsync(T item);
+        Task<T> GetItemAsync(T item);
         Task<List<T>> GetItemsAsync();
-        Task<bool> DeleteAllAsync();
+        Task DeleteAllAsync();
     }
 }
