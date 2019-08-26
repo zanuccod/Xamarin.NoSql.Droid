@@ -17,6 +17,9 @@ namespace LiteDb.Common.Models
         {
             // create table if not exist
             cars = db.GetCollection<Car>();
+
+            // create index on Id key
+            cars.EnsureIndex("Id");
         }
 
         public async Task AddItem(Car item)

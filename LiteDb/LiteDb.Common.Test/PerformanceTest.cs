@@ -42,8 +42,8 @@ namespace LiteDb.Common.Test
             }
         }
 
-        [TearDown]
-        public void AfterEachTest()
+        [TestFixtureTearDown]
+        public void AfterAllTest()
         {
             // delete all database files generated for test
             DeleteFiles(liteDbPath);
@@ -59,7 +59,7 @@ namespace LiteDb.Common.Test
         }
 
         [Test]
-        public void LiteDbInsertTest()
+        public void LiteDbPerformanceTest()
         {
             var startTime = System.Diagnostics.Stopwatch.StartNew();
 
@@ -68,10 +68,26 @@ namespace LiteDb.Common.Test
             startTime.Stop();
 
             Console.WriteLine($"LiteDb elapsed ticks to insert {itemsCount} items: {startTime.ElapsedTicks}");
+
+            startTime = System.Diagnostics.Stopwatch.StartNew();
+
+            items.ForEach(x => Task.FromResult(liteDb.UpdateItemAsync(x)));
+
+            startTime.Stop();
+
+            Console.WriteLine($"LiteDb elapsed ticks to update {itemsCount} items: {startTime.ElapsedTicks}");
+
+            startTime = System.Diagnostics.Stopwatch.StartNew();
+
+            items.ForEach(x => Task.FromResult(liteDb.DeleteItemAsync(x)));
+
+            startTime.Stop();
+
+            Console.WriteLine($"LiteDb elapsed ticks to delete {itemsCount} items: {startTime.ElapsedTicks}");
         }
 
         [Test]
-        public void SqlDbInsertTest()
+        public void SqlDbPerformanceTest()
         {
             var startTime = System.Diagnostics.Stopwatch.StartNew();
 
@@ -80,7 +96,22 @@ namespace LiteDb.Common.Test
             startTime.Stop();
 
             Console.WriteLine($"SqlDb elapsed ticks to insert {itemsCount} items: {startTime.ElapsedTicks}");
-        }
 
+            startTime = System.Diagnostics.Stopwatch.StartNew();
+
+            items.ForEach(x => Task.FromResult(sqlDb.UpdateItemAsync(x)));
+
+            startTime.Stop();
+
+            Console.WriteLine($"SqlDb elapsed ticks to update {itemsCount} items: {startTime.ElapsedTicks}");
+
+            startTime = System.Diagnostics.Stopwatch.StartNew();
+
+            items.ForEach(x => Task.FromResult(sqlDb.DeleteItemAsync(x)));
+
+            startTime.Stop();
+
+            Console.WriteLine($"SqlDb elapsed ticks to delete {itemsCount} items: {startTime.ElapsedTicks}");
+        }
     }
 }
