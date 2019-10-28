@@ -18,7 +18,7 @@ namespace LiteDb.Common.Test
         private CarSqLiteDataStore sqlDb;
         private const string sqlDbPath = "dbSqLiteTest";
 
-        private const int itemsCount = 100000;
+        private const int itemsCount = 1000;
         private List<Car> items;
 
         [TestFixtureSetUp]
@@ -63,7 +63,7 @@ namespace LiteDb.Common.Test
         {
             var startTime = System.Diagnostics.Stopwatch.StartNew();
 
-            items.ForEach(x => Task.FromResult(liteDb.AddItem(x)));
+            items.ForEach(x => liteDb.AddItem(x).ConfigureAwait(true));
 
             startTime.Stop();
 
@@ -71,7 +71,7 @@ namespace LiteDb.Common.Test
 
             startTime = System.Diagnostics.Stopwatch.StartNew();
 
-            items.ForEach(x => Task.FromResult(liteDb.UpdateItemAsync(x)));
+            items.ForEach(x => liteDb.UpdateItemAsync(x).ConfigureAwait(true));
 
             startTime.Stop();
 
@@ -79,7 +79,7 @@ namespace LiteDb.Common.Test
 
             startTime = System.Diagnostics.Stopwatch.StartNew();
 
-            items.ForEach(x => Task.FromResult(liteDb.DeleteItemAsync(x)));
+            items.ForEach(x => liteDb.DeleteItemAsync(x).ConfigureAwait(true));
 
             startTime.Stop();
 
@@ -91,7 +91,7 @@ namespace LiteDb.Common.Test
         {
             var startTime = System.Diagnostics.Stopwatch.StartNew();
 
-            items.ForEach(x => Task.FromResult(sqlDb.AddItem(x)));
+            items.ForEach(x => sqlDb.AddItem(x).ConfigureAwait(true));
 
             startTime.Stop();
 
@@ -99,7 +99,7 @@ namespace LiteDb.Common.Test
 
             startTime = System.Diagnostics.Stopwatch.StartNew();
 
-            items.ForEach(x => Task.FromResult(sqlDb.UpdateItemAsync(x)));
+            items.ForEach(x => sqlDb.UpdateItemAsync(x).ConfigureAwait(true));
 
             startTime.Stop();
 
@@ -107,7 +107,7 @@ namespace LiteDb.Common.Test
 
             startTime = System.Diagnostics.Stopwatch.StartNew();
 
-            items.ForEach(x => Task.FromResult(sqlDb.DeleteItemAsync(x)));
+            items.ForEach(x => sqlDb.DeleteItemAsync(x).ConfigureAwait(true));
 
             startTime.Stop();
 

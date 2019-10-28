@@ -7,43 +7,67 @@ using LiteDb.Common.Models;
 
 namespace SqLitePcl.Common.Models
 {
-    public class CarSqLiteDataStore : SqLiteBase, IDataStore<Car>
+    public class CarSqLiteDataStore : IDataStore<Car>
     {
+        private readonly string dbPath;
+
         public CarSqLiteDataStore(string dbPath = null)
-            : base(dbPath)
         {
-            // create table if not exist
-            db.CreateTableAsync<Car>();
+            this.dbPath = dbPath;
+
+            using (var conn = new SqLiteBase(dbPath))
+            {
+                // create table if not exist
+                conn.db.CreateTableAsync<Car>();
+            }
         }
 
         public async Task AddItem(Car item)
         {
-            await db.InsertAsync(item).ConfigureAwait(false);
+            using (var conn = new SqLiteBase(dbPath))
+            {
+                await conn.db.InsertAsync(item).ConfigureAwait(false);
+            }
         }
 
         public async Task UpdateItemAsync(Car item)
         {
-            await db.UpdateAsync(item).ConfigureAwait(false);
+            using (var conn = new SqLiteBase(dbPath))
+            {
+                await conn.db.UpdateAsync(item).ConfigureAwait(false);
+            }
         }
 
         public async Task DeleteItemAsync(Car item)
         {
-            await db.DeleteAsync(item).ConfigureAwait(false);
+            using (var conn = new SqLiteBase(dbPath))
+            {
+                await conn.db.DeleteAsync(item).ConfigureAwait(false);
+            }
         }
 
         public async Task<Car> GetItemAsync(Car item)
         {
-            return await db.Table<Car>().FirstOrDefaultAsync(x => x.Id == item.Id).ConfigureAwait(false);
+            using (var conn = new SqLiteBase(dbPath))
+            {
+                return await conn.db.Table<Car>().FirstOrDefaultAsync(x => x.Id == item.Id).ConfigureAwait(false);
+            }
         }
 
         public async Task<List<Car>> GetItemsAsync()
         {
-            return await db.Table<Car>().OrderByDescending(x => x.Id).ToListAsync().ConfigureAwait(false);
+            using (var conn = new SqLiteBase(dbPath))
+            {
+                return await conn.db.Table<Car>().OrderByDescending(x => x.Id).ToListAsync().ConfigureAwait(false);
+            }
         }
 
         public async Task DeleteAllAsync()
         {
-            await db.DeleteAllAsync<Car>().ConfigureAwait(false);
+            using (var conn = new SqLiteBase(dbPath))
+            {
+                await conn.db.DeleteAllAsync<Car>().ConfigureAwait(false);
+            }
         }
     }
 }
