@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.Models;
 using LiteDb.Common.Entities;
 using LiteDB;
 
@@ -11,7 +12,7 @@ namespace LiteDb.Common.Models
     {
         private readonly LiteCollection<Car> cars;
 
-        public CarLiteDbDataStore(string dbPath)
+        public CarLiteDbDataStore(string dbPath = null)
             : base(dbPath)
         {
             // create table if not exist

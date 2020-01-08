@@ -9,5 +9,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Presenters\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
 </Project>
