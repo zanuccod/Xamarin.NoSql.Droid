@@ -33,7 +33,7 @@ namespace LiteDb.Common.Test.Models
         public async Task InsertOneElement_Succes()
         {
             var item = new Car() { Id = 1, Model = "modelTest", Productor = "ProductorTest", Year = 1970 };
-            await db.AddItem(item);
+            await db.AddItemAsync(item).ConfigureAwait(true);
 
             Assert.AreEqual(1, db.GetItemsAsync().Result.Count);
         }
@@ -42,7 +42,7 @@ namespace LiteDb.Common.Test.Models
         public async Task UpdateElement_Succes()
         {
             var item = new Car() { Id = 1, Model = "modelTest", Productor = "ProductorTest", Year = 1970 };
-            await db.AddItem(item);
+            await db.AddItemAsync(item).ConfigureAwait(true);
 
             // reload element to get item with given Id
             item = db.GetItemsAsync().Result.FirstOrDefault();
@@ -56,7 +56,7 @@ namespace LiteDb.Common.Test.Models
         public async Task DeleteElement_Success()
         {
             var item = new Car() { Id = 1, Model = "modelTest", Productor = "ProductorTest", Year = 1970 };
-            await db.AddItem(item);
+            await db.AddItemAsync(item).ConfigureAwait(true);
 
             // reload element to get item with given Id
             item = db.GetItemsAsync().Result.FirstOrDefault();
@@ -76,7 +76,7 @@ namespace LiteDb.Common.Test.Models
                 new Car() { Id = 3, Model = "modelTest2", Productor = "ProductorTest2", Year = 1970 }
             };
 
-            items.ForEach(x => db.AddItem(x).ConfigureAwait(true));
+            items.ForEach(x => db.AddItemAsync(x).ConfigureAwait(true));
             Assert.AreEqual(items.Count, db.GetItemsAsync().Result.Count);
 
             // Act

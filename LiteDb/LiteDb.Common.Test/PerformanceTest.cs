@@ -63,7 +63,7 @@ namespace LiteDb.Common.Test
         {
             var startTime = System.Diagnostics.Stopwatch.StartNew();
 
-            items.ForEach(x => liteDb.AddItem(x).ConfigureAwait(true));
+            items.ForEach(x => liteDb.AddItemAsync(x).ConfigureAwait(true));
 
             startTime.Stop();
 
@@ -91,7 +91,7 @@ namespace LiteDb.Common.Test
         {
             var startTime = System.Diagnostics.Stopwatch.StartNew();
 
-            items.ForEach(x => sqlDb.AddItem(x).ConfigureAwait(true));
+            items.ForEach(x => sqlDb.AddItemAsync(x).ConfigureAwait(true));
 
             startTime.Stop();
 

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Common.Models;
 using LiteDb.Common.Entities;
 using LiteDB;
 
@@ -22,7 +21,7 @@ namespace LiteDb.Common.Models
             cars.EnsureIndex("Id");
         }
 
-        public async Task AddItem(Car item)
+        public async Task AddItemAsync(Car item)
         {
             await Task.FromResult(cars.Insert(item)).ConfigureAwait(false);
         }

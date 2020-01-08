@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Common.Models;
 using LiteDb.Common.Entities;
 using LiteDb.Common.Models;
 
@@ -22,7 +21,7 @@ namespace SqLitePcl.Common.Models
             }
         }
 
-        public async Task AddItem(Car item)
+        public async Task AddItemAsync(Car item)
         {
             using (var conn = new SqLiteBase(dbPath))
             {

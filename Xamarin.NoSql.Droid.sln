@@ -1,10 +1,6 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{810096FC-A2DD-43B1-A364-6454757A0BFD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common\Common.csproj", "{B430C819-47FF-483C-9AF4-3F5B92534AC3}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LiteDB", "LiteDB", "{6529D691-A220-4064-BF97-0C12B34482A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiteDb.Common", "LiteDb\LiteDb.Common\LiteDb.Common.csproj", "{1FE6319B-C99E-4903-B53D-C7F70AF71200}"
@@ -17,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B430C819-47FF-483C-9AF4-3F5B92534AC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B430C819-47FF-483C-9AF4-3F5B92534AC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B430C819-47FF-483C-9AF4-3F5B92534AC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B430C819-47FF-483C-9AF4-3F5B92534AC3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1FE6319B-C99E-4903-B53D-C7F70AF71200}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1FE6319B-C99E-4903-B53D-C7F70AF71200}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FE6319B-C99E-4903-B53D-C7F70AF71200}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -31,7 +23,6 @@ Global
 		{5BD6DE77-9506-4637-8903-542B7BC500C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{B430C819-47FF-483C-9AF4-3F5B92534AC3} = {810096FC-A2DD-43B1-A364-6454757A0BFD}
 		{1FE6319B-C99E-4903-B53D-C7F70AF71200} = {6529D691-A220-4064-BF97-0C12B34482A8}
 		{5BD6DE77-9506-4637-8903-542B7BC500C4} = {6529D691-A220-4064-BF97-0C12B34482A8}
 	EndGlobalSection

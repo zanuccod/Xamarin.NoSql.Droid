@@ -8,8 +8,6 @@
     <None Remove="Common.Tests\obj\Debug\Common.Tests.csprojAssemblyReference.cache" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Helpers\" />
     <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
 </Project>

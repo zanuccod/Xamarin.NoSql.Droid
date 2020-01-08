@@ -56,10 +56,6 @@
       <Project>{1FE6319B-C99E-4903-B53D-C7F70AF71200}</Project>
       <Name>LiteDb.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Common\Common\Common.csproj">
-      <Project>{B430C819-47FF-483C-9AF4-3F5B92534AC3}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
