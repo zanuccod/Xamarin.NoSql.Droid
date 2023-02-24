@@ -9,7 +9,7 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="LiteDB" Version="4.1.4" />
+    <PackageReference Include="LiteDB" Version="5.0.13" />
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
   </ItemGroup>
   <ItemGroup>
